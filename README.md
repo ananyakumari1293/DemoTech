@@ -8,12 +8,28 @@
 
 Create a digital identity, verify with facial recognition, enter a virtual workspace, and manage attendance through an immersive enterprise-grade platform.
 
-
 ![Python](https://img.shields.io/badge/Python-3.10+-F4D03F?style=for-the-badge)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-F4D03F?style=for-the-badge)
 ![InsightFace](https://img.shields.io/badge/InsightFace-Facial%20Recognition-F4D03F?style=for-the-badge)
 
 </div>
+
+---
+
+# ⚠️ Deployment Notice
+
+The full biometric pipeline (InsightFace + ONNX Runtime) is implemented and works correctly in local environments.
+
+The public deployment currently runs on free-tier infrastructure, which has strict memory limits. As a result:
+
+* ✅ Frontend is fully deployed and accessible
+* ✅ FastAPI backend is deployed
+* ✅ SQLite integration is functional
+* ✅ Employee management and attendance workflows are implemented
+* ✅ Face recognition works locally
+* ⚠️ Public biometric registration/verification may be limited by free-tier memory constraints
+
+For a complete demonstration of facial recognition, please run the backend locally or view the demo screenshots below.
 
 ---
 
@@ -82,13 +98,12 @@ The project demonstrates how AI-powered authentication can be integrated into a 
 
 # 📸 Landing Page
 
-> Replace with landing page screenshot
+> DemoTech landing experience
 
 <br>
 
 <p align="center">
- <img width="916" height="488" alt="{52004918-EF88-406F-BEDA-67413AC238DF}" src="https://github.com/user-attachments/assets/7a095bbc-528c-473e-851b-f1a2168ae361" />
-
+  <!-- Landing Page Screenshot -->
 </p>
 
 <br>
@@ -97,13 +112,12 @@ The project demonstrates how AI-powered authentication can be integrated into a 
 
 # 📸 Identity Creation & Face Registration
 
-> Replace with onboarding and registration screenshots
+> Employee onboarding and biometric enrollment
 
 <br>
 
 <p align="center">
-  <img width="936" height="491" alt="{72818599-5AA1-4244-92C8-760DA6B4B0FB}" src="https://github.com/user-attachments/assets/0dc31c8b-c5fb-4dfc-ac0f-898b66d691f7" />
-
+  <!-- Registration Screenshot -->
 </p>
 
 <br>
@@ -112,37 +126,31 @@ The project demonstrates how AI-powered authentication can be integrated into a 
 
 # 📸 Biometric Login
 
-> Replace with biometric authentication screenshot
+> Face verification and secure workspace access
 
 <br>
 
 <p align="center">
- <img width="794" height="408" alt="{663B5B48-96CB-4E94-BAB0-10CC9B9B0177}" src="https://github.com/user-attachments/assets/cfc7e8e1-970c-457c-b04b-6f15f74e2a24" />
-
+  <!-- Login Screenshot -->
 </p>
 
 <br>
 
 ---
-
-
 
 # 📸 Virtual Office Lobby
 
-> Replace with office lobby screenshot
+> Interactive workplace dashboard
 
 <br>
 
 <p align="center">
-  <img width="775" height="474" alt="{ECD37684-8E5D-447B-89B2-30AFF2B7DBA0}" src="https://github.com/user-attachments/assets/7a0b8db7-c950-4a47-8603-7d1cbce2a40f" />
-
+  <!-- Lobby Screenshot -->
 </p>
 
 <br>
 
 ---
-
-
 
 # ⚡ System Architecture
 
