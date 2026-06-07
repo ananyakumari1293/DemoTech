@@ -1,72 +1,178 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&height=280&color=0:0B1020,25:1E1B4B,50:4F46E5,75:7C3AED,100:A855F7&text=DemoTech%20Virtual%20Office&fontColor=ffffff&fontSize=55&fontAlignY=40&desc=AI-Powered%20Biometric%20Workplace%20Experience&descAlignY=60"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&height=220&color=0:0B1220,60:1E293B,100:F4D03F&text=DemoTech&fontColor=ffffff&fontSize=55&fontAlignY=38&desc=AI-Powered%20Virtual%20Office&descAlignY=60"/>
+
+# 🌙 DemoTech Virtual Office
+
+### AI-Powered Biometric Workplace Experience
+
+Create a digital identity, verify with facial recognition, enter a virtual workspace, and manage attendance through an immersive enterprise-grade platform.
 
 <br>
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Poppins\&weight=700\&size=28\&pause=1000\&color=A855F7\&center=true\&vCenter=true\&width=900\&lines=Enter+the+Virtual+Office;AI-Powered+Face+Recognition;FastAPI+%2B+InsightFace+%2B+SQLite;Immersive+Workplace+Experience)](https://git.io/typing-svg)
+[🌐 Live Demo](https://demo-tech-five.vercel.app) • [⚡ Backend API](https://demotech.onrender.com/api/v1/health)
 
 <br>
 
-![GitHub stars](https://img.shields.io/github/stars/ananyakumari1293/DemoTech?style=for-the-badge\&color=7C3AED)
-![GitHub forks](https://img.shields.io/github/forks/ananyakumari1293/DemoTech?style=for-the-badge\&color=A855F7)
-![GitHub repo size](https://img.shields.io/github/repo-size/ananyakumari1293/DemoTech?style=for-the-badge\&color=6366F1)
-![Python](https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge)
-![FastAPI](https://img.shields.io/badge/FastAPI-Backend-00C7B7?style=for-the-badge)
-![InsightFace](https://img.shields.io/badge/InsightFace-Facial%20Recognition-purple?style=for-the-badge)
+![Python](https://img.shields.io/badge/Python-3.10+-F4D03F?style=for-the-badge)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-F4D03F?style=for-the-badge)
+![InsightFace](https://img.shields.io/badge/InsightFace-Facial%20Recognition-F4D03F?style=for-the-badge)
 
 </div>
 
 ---
 
-# 🌌 About DemoTech
+# ✨ Overview
 
-DemoTech is not a traditional attendance system.
+DemoTech is a futuristic virtual workplace that combines facial recognition, workforce management, and immersive UI design into a single platform.
 
-It is a futuristic virtual workplace experience where users create a digital identity, generate a biometric keycard, verify themselves using facial recognition, enter a simulated workspace, and manage attendance through an immersive enterprise-grade interface.
+Instead of using a traditional attendance system, users:
 
-The project combines modern SaaS design, biometric authentication, workforce automation, and virtual office interactions into a single platform.
+* Create a digital identity
+* Register biometric face templates
+* Generate a virtual employee keycard
+* Verify identity through facial recognition
+* Enter a virtual workspace
+* Track attendance and activity
 
----
-
-## ✨ Features
-
-### 🧬 Biometric Identity System
-
-* Face registration
-* Face verification
-* Multi-pose enrollment
-* InsightFace embeddings
-* Real-time recognition
-
-### 🏢 Virtual Office Experience
-
-* Interactive onboarding
-* Digital employee keycards
-* Workspace access control
-* Virtual office lobby
-* Immersive logout experience
-
-### 📊 Workforce Management
-
-* Attendance tracking
-* Check-in/check-out logs
-* Employee management
-* Attendance analytics
-* Real-time dashboard statistics
-
-### 🎨 Premium UI
-
-* Dark mode experience
-* Glassmorphism cards
-* Neon gradients
-* Floating animations
-* Responsive layouts
-* Mobile optimized
+The project demonstrates how AI-powered authentication can be integrated into a modern enterprise experience.
 
 ---
 
-# 🏗️ System Architecture
+# 🚀 Key Features
+
+## 🧬 Biometric Identity System
+
+* Face Registration
+* Face Verification
+* Multi-Pose Enrollment
+* InsightFace Recognition Engine
+* Confidence-Based Matching
+* Secure Identity Validation
+
+---
+
+## 🏢 Virtual Office Experience
+
+* Digital Employee Keycards
+* Workspace Access Control
+* Interactive Office Lobby
+* Immersive Onboarding Flow
+* Personalized User Profiles
+* Futuristic SaaS Interface
+
+---
+
+## 📊 Workforce Management
+
+* Employee Management
+* Attendance Tracking
+* Check-In / Check-Out
+* Daily Activity Logs
+* Dashboard Analytics
+* Statistics Monitoring
+
+---
+
+## 🎨 Modern UI
+
+* Dark Theme Design
+* Glassmorphism Components
+* Neon Accent Effects
+* Responsive Layout
+* Mobile-Friendly Experience
+* Smooth Animations
+
+---
+
+# 📸 Landing Page
+
+> Replace with landing page screenshot
+
+<br>
+
+<p align="center">
+  <img src="YOUR-LANDING-IMAGE" width="100%">
+</p>
+
+<br>
+
+---
+
+# 📸 Identity Creation & Face Registration
+
+> Replace with onboarding and registration screenshots
+
+<br>
+
+<p align="center">
+  <img src="YOUR-REGISTRATION-IMAGE" width="48%">
+  <img src="YOUR-FACE-REGISTRATION-IMAGE" width="48%">
+</p>
+
+<br>
+
+---
+
+# 📸 Biometric Login
+
+> Replace with biometric authentication screenshot
+
+<br>
+
+<p align="center">
+  <img src="YOUR-LOGIN-IMAGE" width="100%">
+</p>
+
+<br>
+
+---
+
+# 📸 Employee Workspace
+
+> Replace with employee dashboard screenshot
+
+<br>
+
+<p align="center">
+  <img src="YOUR-DASHBOARD-IMAGE" width="100%">
+</p>
+
+<br>
+
+---
+
+# 📸 Virtual Office Lobby
+
+> Replace with office lobby screenshot
+
+<br>
+
+<p align="center">
+  <img src="YOUR-LOBBY-IMAGE" width="100%">
+</p>
+
+<br>
+
+---
+
+# 📸 Mobile Experience
+
+> Replace with mobile screenshots
+
+<br>
+
+<p align="center">
+  <img src="YOUR-MOBILE-IMAGE-1" width="30%">
+  <img src="YOUR-MOBILE-IMAGE-2" width="30%">
+  <img src="YOUR-MOBILE-IMAGE-3" width="30%">
+</p>
+
+<br>
+
+---
+
+# ⚡ System Architecture
 
 ```text
 Frontend (Vercel)
@@ -75,40 +181,29 @@ Frontend (Vercel)
 FastAPI Backend (Render)
         │
         ▼
- Face Recognition Engine
-     InsightFace
+InsightFace Recognition Engine
         │
         ▼
 SQLite Database
 ```
 
-## ⚙️ Tech Stack
+---
 
-| Layer              | Technology            |
-| ------------------ | --------------------- |
-| Frontend           | HTML, CSS, JavaScript |
-| Backend            | FastAPI               |
-| AI                 | InsightFace           |
-| Database           | SQLite                |
-| Deployment         | Vercel + Render       |
-| Recognition Engine | ONNX Runtime          |
-| Image Processing   | OpenCV                |
+# 🛠️ Tech Stack
+
+| Category        | Technology            |
+| --------------- | --------------------- |
+| Frontend        | HTML, CSS, JavaScript |
+| Backend         | FastAPI               |
+| AI Engine       | InsightFace           |
+| Database        | SQLite                |
+| Computer Vision | OpenCV                |
+| Runtime         | ONNX Runtime          |
+| Deployment      | Vercel + Render       |
 
 ---
 
-# 🚀 Live Deployment
-
-### Frontend
-
-https://demo-tech-five.vercel.app
-
-### Backend
-
-https://demotech.onrender.com/api/v1/health
-
----
-
-# 📁 Project Structure
+# 📂 Project Structure
 
 ```bash
 demotech/
@@ -137,7 +232,7 @@ demotech/
 
 ---
 
-# 🔐 Biometric Verification Flow
+# 🔐 Authentication Flow
 
 ```text
 Create Identity
@@ -149,13 +244,13 @@ Register Face
 Generate Embedding
        │
        ▼
-Store in Database
+Store Template
        │
        ▼
 Face Verification
        │
        ▼
-Attendance Marked
+Attendance Logged
        │
        ▼
 Workspace Access Granted
@@ -163,40 +258,36 @@ Workspace Access Granted
 
 ---
 
-# 📸 Screenshots
+# 🌐 Deployment
 
-Add screenshots here after final UI polishing.
+### Frontend
 
-```md
-![Landing Page](assets/landing.png)
+https://demo-tech-five.vercel.app
 
-![Face Login](assets/login.png)
+### Backend
 
-![Workspace Dashboard](assets/dashboard.png)
-
-![Virtual Lobby](assets/lobby.png)
-```
+https://demotech.onrender.com
 
 ---
 
-# 🎯 Future Improvements
+# 🎯 Future Enhancements
 
-* Employee departments
-* AI attendance insights
-* Real-time notifications
-* Cloud database migration
-* QR access control
-* Team collaboration modules
-* Multi-admin support
-* Analytics exports
+* Cloud Database Migration
+* Multi-Admin Roles
+* AI Attendance Insights
+* Team Collaboration Modules
+* Smart Notifications
+* QR Access Control
+* Analytics Export
+* Real-Time Presence Monitoring
 
 ---
 
 # 👩‍💻 Author
 
-**Ananya Prakash**
+### Ananya Prakash
 
-Building immersive AI-powered software experiences using modern web technologies, computer vision, and intelligent automation.
+Passionate about AI, Computer Vision, Full-Stack Development, and building immersive software experiences.
 
 ---
 
@@ -204,6 +295,6 @@ Building immersive AI-powered software experiences using modern web technologies
 
 ### 🌙 Enter the Office. Verify Identity. Unlock the Workspace.
 
-⭐ Star this repository if you like the project.
+⭐ If you found this project interesting, consider starring the repository.
 
 </div>
