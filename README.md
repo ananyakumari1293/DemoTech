@@ -8,11 +8,6 @@
 
 Create a digital identity, verify with facial recognition, enter a virtual workspace, and manage attendance through an immersive enterprise-grade platform.
 
-<br>
-
-[🌐 Live Demo](https://demo-tech-five.vercel.app) • [⚡ Backend API](https://demotech.onrender.com/api/v1/health)
-
-<br>
 
 ![Python](https://img.shields.io/badge/Python-3.10+-F4D03F?style=for-the-badge)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-F4D03F?style=for-the-badge)
@@ -92,7 +87,8 @@ The project demonstrates how AI-powered authentication can be integrated into a 
 <br>
 
 <p align="center">
-  <img src="YOUR-LANDING-IMAGE" width="100%">
+ <img width="916" height="488" alt="{52004918-EF88-406F-BEDA-67413AC238DF}" src="https://github.com/user-attachments/assets/7a095bbc-528c-473e-851b-f1a2168ae361" />
+
 </p>
 
 <br>
@@ -106,8 +102,8 @@ The project demonstrates how AI-powered authentication can be integrated into a 
 <br>
 
 <p align="center">
-  <img src="YOUR-REGISTRATION-IMAGE" width="48%">
-  <img src="YOUR-FACE-REGISTRATION-IMAGE" width="48%">
+  <img width="936" height="491" alt="{72818599-5AA1-4244-92C8-760DA6B4B0FB}" src="https://github.com/user-attachments/assets/0dc31c8b-c5fb-4dfc-ac0f-898b66d691f7" />
+
 </p>
 
 <br>
@@ -121,26 +117,15 @@ The project demonstrates how AI-powered authentication can be integrated into a 
 <br>
 
 <p align="center">
-  <img src="YOUR-LOGIN-IMAGE" width="100%">
+ <img width="794" height="408" alt="{663B5B48-96CB-4E94-BAB0-10CC9B9B0177}" src="https://github.com/user-attachments/assets/cfc7e8e1-970c-457c-b04b-6f15f74e2a24" />
+
 </p>
 
 <br>
 
 ---
 
-# 📸 Employee Workspace
 
-> Replace with employee dashboard screenshot
-
-<br>
-
-<p align="center">
-  <img src="YOUR-DASHBOARD-IMAGE" width="100%">
-</p>
-
-<br>
-
----
 
 # 📸 Virtual Office Lobby
 
@@ -149,28 +134,15 @@ The project demonstrates how AI-powered authentication can be integrated into a 
 <br>
 
 <p align="center">
-  <img src="YOUR-LOBBY-IMAGE" width="100%">
+  <img width="775" height="474" alt="{ECD37684-8E5D-447B-89B2-30AFF2B7DBA0}" src="https://github.com/user-attachments/assets/7a0b8db7-c950-4a47-8603-7d1cbce2a40f" />
+
 </p>
 
 <br>
 
 ---
 
-# 📸 Mobile Experience
 
-> Replace with mobile screenshots
-
-<br>
-
-<p align="center">
-  <img src="YOUR-MOBILE-IMAGE-1" width="30%">
-  <img src="YOUR-MOBILE-IMAGE-2" width="30%">
-  <img src="YOUR-MOBILE-IMAGE-3" width="30%">
-</p>
-
-<br>
-
----
 
 # ⚡ System Architecture
 
