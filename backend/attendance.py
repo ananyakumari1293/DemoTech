@@ -3,7 +3,7 @@ import pickle
 import numpy as np
 import logging
 import config
-from .register import get_face_analyzer, NoFaceError, MultipleFacesError
+from register import get_face_analyzer, NoFaceError, MultipleFacesError
 
 logger = logging.getLogger("demotech.attendance")
 
