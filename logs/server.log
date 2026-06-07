@@ -1,0 +1,46 @@
+2026-06-07 11:56:14,497 [INFO] demotech.main: Initializing database...
+2026-06-07 11:56:14,512 [INFO] demotech.main: Loading face embeddings cache...
+2026-06-07 11:56:14,512 [INFO] demotech.attendance: Loading known embeddings from disk...
+2026-06-07 11:56:14,513 [INFO] demotech.attendance: Loaded 0 embeddings for 0 unique employees.
+2026-06-07 11:56:38,824 [INFO] demotech.attendance: Loading known embeddings from disk...
+2026-06-07 11:56:38,826 [INFO] demotech.attendance: Loaded 25 embeddings for 5 unique employees.
+2026-06-07 11:56:38,826 [INFO] demotech.main: Admin override: Populated database with mock templates successfully.
+2026-06-07 11:56:53,720 [INFO] demotech.main: Admin toggled presence for EMP-0925 to Present
+2026-06-07 11:57:03,490 [INFO] demotech.main: Admin toggled presence for EMP-0925 to Absent
+2026-06-07 11:59:44,346 [INFO] demotech.register: Initializing InsightFace FaceAnalysis model...
+2026-06-07 11:59:48,055 [INFO] demotech.register: InsightFace initialized on GPU (ctx_id=0).
+2026-06-07 11:59:51,097 [INFO] demotech.main: Verification result: unknown face template.
+2026-06-07 12:00:07,948 [INFO] demotech.main: Verification result: unknown face template.
+2026-06-07 12:00:59,145 [INFO] demotech.register: Saved profile image for Prakash to C:\Users\Ananya Prakash\Desktop\New folder (8)\demotech\data\profile_images\Prakash.jpg
+2026-06-07 12:00:59,145 [INFO] demotech.main: Processed registration sample 1/5 for Prakash
+2026-06-07 12:01:05,138 [INFO] demotech.main: Processed registration sample 2/5 for Prakash
+2026-06-07 12:01:09,926 [INFO] demotech.main: Processed registration sample 3/5 for Prakash
+2026-06-07 12:01:18,825 [INFO] demotech.main: Processed registration sample 4/5 for Prakash
+2026-06-07 12:01:22,744 [INFO] demotech.main: Processed registration sample 5/5 for Prakash
+2026-06-07 12:01:44,120 [INFO] demotech.attendance: Dynamically cached 5 embeddings for employee Prakash.
+2026-06-07 12:01:44,120 [INFO] demotech.main: Registered employee successfully: Ananya (Prakash)
+2026-06-07 12:03:52,089 [INFO] demotech.main: Attendance Verified: check-in for Ananya (Prakash) at 12:03 PM (medium similarity)
+2026-06-07 12:04:02,787 [INFO] demotech.main: Attendance Verified: check-out for Ananya (Prakash) at 12:04 PM
+2026-06-07 12:04:28,719 [INFO] demotech.attendance: Removed employee EMP-0925 embeddings from cache.
+2026-06-07 12:04:28,719 [INFO] demotech.main: Employee EMP-0925 marked inactive and removed from cache.
+2026-06-07 12:05:34,713 [INFO] demotech.attendance: Removed employee Prakash embeddings from cache.
+2026-06-07 12:05:34,713 [INFO] demotech.main: Employee Prakash marked inactive and removed from cache.
+2026-06-07 12:05:39,169 [INFO] demotech.attendance: Removed employee EMP-4019 embeddings from cache.
+2026-06-07 12:05:39,169 [INFO] demotech.main: Employee EMP-4019 marked inactive and removed from cache.
+2026-06-07 12:05:42,745 [INFO] demotech.attendance: Removed employee EMP-1042 embeddings from cache.
+2026-06-07 12:05:42,746 [INFO] demotech.main: Employee EMP-1042 marked inactive and removed from cache.
+2026-06-07 12:05:45,348 [INFO] demotech.attendance: Removed employee EMP-2104 embeddings from cache.
+2026-06-07 12:05:45,348 [INFO] demotech.main: Employee EMP-2104 marked inactive and removed from cache.
+2026-06-07 12:05:48,529 [INFO] demotech.attendance: Removed employee EMP-3042 embeddings from cache.
+2026-06-07 12:05:48,529 [INFO] demotech.main: Employee EMP-3042 marked inactive and removed from cache.
+2026-06-07 12:16:28,851 [INFO] demotech.attendance: Loading known embeddings from disk...
+2026-06-07 12:16:28,852 [INFO] demotech.attendance: Loaded 25 embeddings for 5 unique employees.
+2026-06-07 12:16:28,852 [INFO] demotech.main: Admin override: Populated database with mock templates successfully.
+2026-06-07 12:33:43,810 [INFO] demotech.attendance: Removed employee EMP-3042 embeddings from cache.
+2026-06-07 12:33:43,810 [INFO] demotech.main: Employee EMP-3042 marked inactive and removed from cache.
+2026-06-07 12:33:47,705 [INFO] demotech.attendance: Removed employee EMP-4019 embeddings from cache.
+2026-06-07 12:33:47,705 [INFO] demotech.main: Employee EMP-4019 marked inactive and removed from cache.
+2026-06-07 12:33:52,424 [INFO] demotech.attendance: Removed employee EMP-2104 embeddings from cache.
+2026-06-07 12:33:52,425 [INFO] demotech.main: Employee EMP-2104 marked inactive and removed from cache.
+2026-06-07 12:33:55,792 [INFO] demotech.attendance: Removed employee EMP-1042 embeddings from cache.
+2026-06-07 12:33:55,792 [INFO] demotech.main: Employee EMP-1042 marked inactive and removed from cache.

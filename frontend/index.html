@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DemoTech — Virtual Workplace Experience</title>
+  <meta name="description" content="An immersive fictional AI-powered virtual workplace demonstrating biometric identity verification and attendance automation.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="dark">
+
+  <!-- Subtle Ambient Glowing Blobs -->
+  <div class="ambient-glow glow-top-left"></div>
+  <div class="ambient-glow glow-bottom-right"></div>
+
+  <!-- Central Single Page Application Wrapper -->
+  <div class="app-container">
+
+    <!-- Mobile-friendly Side Navigation Drawer (Hidden on Landing & Leaving Page) -->
+    <aside class="sidebar-layout" id="app-sidebar" style="display: none;">
+      <div style="display: flex; flex-direction: column; gap: 1.5rem; height: 100%;">
+        <div class="brand-wrapper" onclick="router.navigate('landing')">
+          <div class="sidebar-avatar" style="width: 32px; height: 32px; font-size: 0.8rem; border-radius: 10px;">DT</div>
+          <div class="brand-title" style="font-size: 1.1rem;">DemoTech <span style="font-size: 0.75rem; color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Office</span></div>
+        </div>
+
+        <!-- Theme toggle in sidebar -->
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 0.75rem; border: 1px solid var(--border-color); border-radius: 16px; margin: 0.5rem 0;">
+          <span style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary);">Workspace Lights</span>
+          <button class="theme-toggle-btn" onclick="toggleTheme()" style="width: 32px; height: 32px;">
+            <i data-lucide="sun" class="sun-icon" style="width: 14px; height: 14px;"></i>
+          </button>
+        </div>
+
+        <nav>
+          <div class="sidebar-menu-header">Lobby Gates</div>
+          <ul class="sidebar-menu-list">
+            <li>
+              <a class="sidebar-link" onclick="router.navigate('facelogin')" id="nav-facelogin">
+                <i data-lucide="door-open"></i>
+                <span>Enter Workspace</span>
+              </a>
+            </li>
+            <li>
+              <a class="sidebar-link" onclick="router.navigate('register')" id="nav-register">
+                <i data-lucide="key-round"></i>
+                <span>Register Profile</span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-menu-header">Work Station</div>
+          <ul class="sidebar-menu-list">
+            <li>
+              <a class="sidebar-link" onclick="router.navigate('emp-dashboard')" id="nav-emp-dashboard">
+                <i data-lucide="layout-dashboard"></i>
+                <span>My Workspace</span>
+              </a>
+            </li>
+            <li>
+              <a class="sidebar-link" onclick="router.navigate('admin-dashboard')" id="nav-nav-admin-dashboard">
+                <i data-lucide="door-closed"></i>
+                <span>Office Lobby</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Logged-in User Context Profile Card -->
+        <div class="sidebar-user-info-card" id="sidebar-user-card" onclick="openProfileModal()">
+          <div class="sidebar-avatar" id="sidebar-user-avatar">AP</div>
+          <div class="sidebar-name-lbl" id="sidebar-user-name">
+            Ananya Prakash
+            <span id="sidebar-user-role">Architect</span>
+          </div>
+          <a class="sidebar-logout-btn" onclick="triggerLeavingSequence(event)" title="Leave Workspace">
+            <i data-lucide="log-out" style="width: 14px;"></i>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Canvas -->
+    <main class="main-content" id="app-main-content">
+
+      <!-- ================= 1. LANDING PAGE ================= -->
+      <div id="view-landing" class="view-section active">
+        <header class="landing-header">
+          <div class="brand-wrapper" onclick="router.navigate('landing')">
+            <div class="sidebar-avatar" style="width: 36px; height: 36px; border-radius: 12px; font-weight: 800;">DT</div>
+            <div class="brand-title">DemoTech <span style="font-size: 0.85rem; color: var(--primary); font-weight: 700; text-transform: uppercase;">Virtual Office</span></div>
+          </div>
+          <div style="display: flex; gap: 1.25rem; align-items: center;">
+            <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle lights">
+              <i data-lucide="sun" style="width: 18px; height: 18px;"></i>
+            </button>
+            <button class="btn-outline" onclick="router.navigate('admin-dashboard')">View Office Lobby</button>
+            <button class="btn-primary" onclick="router.navigate('facelogin')">Enter Workspace</button>
+          </div>
+        </header>
+
+        <section class="hero-section">
+          <div>
+            <div class="hero-badge">
+              <i data-lucide="sparkles" style="width: 14px; height: 14px;"></i>
+              <span>Fictional Interactive Demo</span>
+            </div>
+            <h1 class="hero-title">
+              Enter the<br><span>Virtual Office.</span>
+            </h1>
+            <p class="hero-sub">
+              A fictional AI-powered workplace demonstrating biometric identity verification and attendance automation. Scan face to enter, generate custom keycards, and interact with the team lobby.
+            </p>
+            <div style="display: flex; gap: 1rem;">
+              <button class="btn-primary" onclick="router.navigate('register')">
+                <i data-lucide="user-plus" style="width: 18px; height: 18px;"></i> Register Profile
+              </button>
+              <button class="btn-secondary" onclick="router.navigate('facelogin')">
+                <i data-lucide="door-open" style="width: 18px; height: 18px;"></i> Enter Office Gate
+              </button>
+            </div>
+          </div>
+
+          <div class="landing-flowcase">
+            <!-- Premium Ambient Gradient Mesh Backdrops -->
+            <div class="hero-blur-orb orb-violet"></div>
+            <div class="hero-blur-orb orb-cyan"></div>
+            <div class="hero-blur-orb orb-coral"></div>
+            <div class="hero-glow-trail"></div>
+            
+            <div class="floating-scene-card scene-card-1">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--text-dim);">Onboarding</span>
+                <span style="font-size: 0.72rem; color: var(--primary); font-weight: 600;">1 of 3</span>
+              </div>
+              <div style="font-family: var(--font-brand); font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem;">Create Identity</div>
+              <p style="font-size: 0.75rem; color: var(--text-secondary);">Input profile details to request biometric keycard credentials.</p>
+            </div>
+
+            <div class="floating-scene-card scene-card-2">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--text-dim);">Verification</span>
+                <span style="font-size: 0.72rem; color: var(--secondary); font-weight: 600;">Active Gate</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; border: 2px dashed var(--secondary); display: flex; align-items: center; justify-content: center;">
+                  <i data-lucide="smile" style="width: 16px; height: 16px; color: var(--secondary);"></i>
+                </div>
+                <div>
+                  <div style="font-family: var(--font-brand); font-weight: 700; font-size: 0.88rem;">Biometric Door Lock</div>
+                  <span style="font-size: 0.72rem; color: var(--success); font-weight: 500;">Scanning face template...</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="floating-scene-card scene-card-3">
+              <div style="display: inline-flex; align-items: center; gap: 4px; background: rgba(16, 185, 129, 0.1); color: var(--success); font-weight: 700; font-size: 0.68rem; padding: 0.15rem 0.5rem; border-radius: 99px; text-transform: uppercase; margin-bottom: 0.5rem;">
+                <i data-lucide="check" style="width: 10px; height: 10px;"></i> Verified
+              </div>
+              <div style="font-family: var(--font-brand); font-weight: 700; font-size: 1.1rem;">Workspace Access</div>
+              <div style="font-size: 1.6rem; font-weight: 800; color: var(--primary); margin: 0.25rem 0;">DT-1024 Activated</div>
+              <p style="font-size: 0.75rem; color: var(--text-dim);">Presence registered successfully for today.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="card-viewport" style="margin-top: 4rem; padding: 2.5rem; border-color: rgba(99, 102, 241, 0.1);">
+          <h3 style="font-family: var(--font-brand); font-size: 1.35rem; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;"><i data-lucide="help-circle" style="color: var(--primary);"></i> Fictional Project Context</h3>
+          <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
+            DemoTech is a simulated corporate office built to show face-recognition and check-in workflows in an immersive environment. Visitors join the workplace by creating an employee keycard, completing 5 webcam poses, scanning at the biometric door to verify presence, and leaving home at checkout.
+          </p>
+        </section>
+      </div>
+
+      <!-- ================= 2. REGISTER PROFILE ================= -->
+      <div id="view-register" class="view-section">
+        <div style="margin-bottom: 2.5rem;">
+          <h2 style="font-size: 2rem; color: var(--text-main); margin-bottom: 0.5rem; font-style: italic;">Create Your Employee Identity</h2>
+          <p style="color: var(--text-secondary);">Fill in your details and capture 5 biometric facial templates to register.</p>
+        </div>
+
+        <div class="onboarding-card-grid">
+          <!-- Left: Identity Parameters Form -->
+          <div class="card-viewport">
+            <h3 style="font-family: var(--font-brand); font-size: 1.15rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; color: var(--primary); font-style: italic;"><i data-lucide="key-round"></i> Identity Parameters</h3>
+            
+            <form id="onboarding-form" class="onboarding-form" onsubmit="event.preventDefault();">
+              <div class="form-field">
+                <label for="onboard-name">Your Full Name</label>
+                <input type="text" id="onboard-name" class="form-input" placeholder="e.g., Ananya Prakash" required>
+              </div>
+
+              <div class="form-field">
+                <label for="onboard-college">College / Institution</label>
+                <input type="text" id="onboard-college" class="form-input" placeholder="e.g., Delhi Technological University" required>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 1rem;">
+                <div class="form-field">
+                  <label for="onboard-course">Course / Department</label>
+                  <input type="text" id="onboard-course" class="form-input" placeholder="e.g., Computer Science" required>
+                </div>
+                <div class="form-field">
+                  <label for="onboard-year">Current Year</label>
+                  <select id="onboard-year" class="form-input" required>
+                    <option value="" disabled selected>Select Year</option>
+                    <option value="Year 1">1st Year</option>
+                    <option value="Year 2">2nd Year</option>
+                    <option value="Year 3">3rd Year</option>
+                    <option value="Year 4">4th Year</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Right: Face Scanner & Capture -->
+          <div class="card-viewport" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+            <h3 style="font-family: var(--font-brand); font-size: 1.15rem; margin-bottom: 1.5rem; color: var(--primary); font-style: italic; width: 100%; text-align: left; display: flex; align-items: center; gap: 0.5rem;"><i data-lucide="smile"></i> Face Template Capture</h3>
+            
+            <div class="face-scanner-viewport" style="margin-bottom: 1rem;">
+              <div class="scan-indicator-hud">
+                <span class="hud-pulse-dot"></span>
+                <span>BIOMETRIC CHANNEL ACTIVE</span>
+              </div>
+              <div class="guide-target-ring" id="reg-alignment-guide"></div>
+              
+              <video id="registration-video" style="width: 100%; height: 100%; object-fit: cover; display: none;" autoplay playsinline muted></video>
+              
+              <div class="camera-placeholder" id="registration-fallback" style="height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: #0c0a0f; color: var(--text-dim); gap: 1rem; position: relative;">
+                <i data-lucide="camera-off" style="width: 48px; height: 48px; color: var(--text-dim);"></i>
+                <span style="font-size: 0.88rem; font-family: var(--font-mono);">Camera offline</span>
+              </div>
+              
+              <div class="face-box-sim" id="reg-face-box" style="display: none; position: absolute; border: 2px solid var(--primary); border-radius: 20px; pointer-events: none; z-index: 10; box-shadow: 0 0 15px rgba(244,63,94,0.25);">
+                <div class="face-box-lbl" style="position: absolute; top: -22px; left: 0; background-color: var(--primary); color: #fff; font-size: 0.65rem; font-family: var(--font-mono); padding: 2px 6px; border-radius: 4px; white-space: nowrap;">FACE IN GUIDE</div>
+              </div>
+            </div>
+
+            <!-- Cinematic Pose indicator dots -->
+            <div class="pose-indicator-grid" id="capture-sample-dots">
+              <div class="pose-node-cinema active" title="Front Pose">1</div>
+              <div class="pose-node-cinema" title="Left Pose">2</div>
+              <div class="pose-node-cinema" title="Right Pose">3</div>
+              <div class="pose-node-cinema" title="Up Pose">4</div>
+              <div class="pose-node-cinema" title="Natural Pose">5</div>
+            </div>
+            
+            <div id="capture-status-text" style="font-family: var(--font-brand); font-weight: 700; font-size: 0.92rem; color: var(--primary); margin-top: 0.5rem; font-style: italic;">
+              0 of 5 Captured
+            </div>
+            
+            <div style="display: flex; gap: 1rem; margin-top: 1.5rem; width: 100%;">
+              <button class="btn-outline" id="btn-toggle-reg-cam" onclick="toggleRegistrationCamera()" style="flex: 1; justify-content: center;">
+                <span id="reg-cam-btn-text">Enable Camera</span>
+              </button>
+              <button class="btn-primary" id="btn-capture-sample" onclick="captureRegistrationSample()" style="flex: 1.2; justify-content: center;" disabled>
+                <i data-lucide="camera" style="width: 16px;"></i> Scan Pose
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 2rem; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 2.25rem;">
+          <!-- Left: Registration Log Feed -->
+          <div class="card-viewport">
+            <h3 style="font-family: var(--font-brand); font-size: 1.15rem; color: var(--primary); margin-bottom: 0.75rem; font-style: italic;">Identity Creation Logs</h3>
+            <div class="terminal-event-box" id="registration-logs" style="height: 120px;">
+              <!-- Timed logs -->
+            </div>
+          </div>
+          
+          <!-- Right: Register Submit CTA -->
+          <div class="card-viewport" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 1.25rem;">
+            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+              Ensure all 4 details are filled and 5 face poses are scanned before completing registration.
+            </p>
+            <button class="btn-primary" id="btn-register-employee" onclick="triggerEmployeeRegistration()" style="width: 100%; justify-content: center; padding: 0.85rem 1.5rem; font-size: 1rem;" disabled>
+              Complete Registration &rarr;
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 4. ENTERING THE OFFICE (BIOMETRIC GATE) ================= -->
+      <div id="view-facelogin" class="view-section">
+        <div style="margin-bottom: 2.5rem;">
+          <h2 style="font-size: 2rem; color: var(--text-main); margin-bottom: 0.5rem;">Biometric Office Gate</h2>
+          <p style="color: var(--text-secondary);">Verify your biometric keycard to unlock workspace access today.</p>
+        </div>
+
+        <div class="onboarding-card-grid">
+          <!-- Left: Scanner View -->
+          <div class="card-viewport" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div class="face-scanner-viewport" style="margin-bottom: 1.5rem;">
+              <div class="scan-indicator-hud">
+                <span class="hud-pulse-dot" style="background-color: var(--secondary);"></span>
+                <span id="login-auth-status">SYSTEM IDLE</span>
+              </div>
+              <div class="guide-target-ring" id="login-alignment-guide"></div>
+              
+              <video id="login-video" style="width: 100%; height: 100%; object-fit: cover; display: none;" autoplay playsinline muted></video>
+              
+              <div class="camera-placeholder" id="login-fallback" style="height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: #0c0a0f; color: var(--text-dim); gap: 1rem; position: relative;">
+                <i data-lucide="video-off" style="width: 48px; height: 48px; color: var(--text-dim);"></i>
+                <span style="font-size: 0.88rem; font-family: var(--font-mono);">Webcam deactivated</span>
+              </div>
+              
+              <div class="face-box-sim" id="login-face-box" style="display: none; position: absolute; border: 2px solid var(--secondary); border-radius: 20px; pointer-events: none; z-index: 10; box-shadow: 0 0 15px rgba(6,182,212,0.25);">
+                <div class="face-box-lbl" id="login-face-box-label" style="position: absolute; top: -22px; left: 0; background-color: var(--secondary); color: #fff; font-size: 0.65rem; font-family: var(--font-mono); padding: 2px 6px; border-radius: 4px; white-space: nowrap;">SCANNING GATES</div>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; width: 100%; max-width: 420px;">
+              <button class="btn-outline" id="btn-login-toggle-camera-active" onclick="toggleLoginCamera()" style="flex: 1; justify-content: center;">
+                Enable Camera
+              </button>
+              <button class="btn-primary" id="btn-trigger-facelogin" onclick="startFaceLoginVerification()" style="flex: 1.2; justify-content: center;" disabled>
+                <i data-lucide="scan-face" style="width: 16px;"></i> Scan Identity
+              </button>
+            </div>
+          </div>
+
+          <!-- Right: Match Console Ring -->
+          <div class="card-viewport" style="display: flex; flex-direction: column; justify-content: space-between; align-items: center; text-align: center;">
+            <div style="width: 100%;">
+              <h3 style="font-family: var(--font-brand); font-size: 1.15rem; color: var(--text-main); margin-bottom: 1.5rem; text-align: left; display: flex; align-items: center; gap: 0.5rem;"><i data-lucide="radar" style="color: var(--secondary);"></i> Biometric Reader</h3>
+              
+              <!-- Circular Progress Rings -->
+              <div class="verify-scanner-frame" style="width: 120px; height: 120px; margin: 1rem auto;">
+                <svg width="120" height="120" viewBox="0 0 120 120" style="transform: rotate(-90deg); filter: drop-shadow(0 4px 10px rgba(99,102,241,0.15));">
+                  <circle cx="60" cy="60" r="46" stroke="var(--border-color)" stroke-width="6" fill="transparent" />
+                  <circle cx="60" cy="60" r="46" stroke="url(#progress-ring-grad)" stroke-width="7" fill="transparent" stroke-dasharray="289" stroke-dashoffset="289" stroke-linecap="round" id="progress-ring-circle" style="transition: stroke-dashoffset 0.4s ease;" />
+                </svg>
+                <div style="position: absolute; display: flex; flex-direction: column; align-items: center;">
+                  <span style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">Match</span>
+                  <span style="font-family: var(--font-brand); font-size: 1.45rem; font-weight: 800; color: var(--text-main);" id="login-similarity-val">--%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Profile match details card -->
+            <div style="width: 100%; background-color: var(--bg-base); border: 1px solid var(--border-color); padding: 1rem 1.25rem; border-radius: 20px; margin: 1rem 0; text-align: left; display: flex; align-items: center; gap: 0.75rem;">
+              <div class="sidebar-avatar" id="login-matched-avatar" style="width: 44px; height: 44px; border-radius: 50%; font-weight: 700;">--</div>
+              <div>
+                <div style="font-family: var(--font-brand); font-size: 0.95rem; font-weight: 700; color: var(--text-main);" id="login-matched-name">No Face Detected</div>
+                <div style="font-size: 0.75rem; color: var(--text-dim);" id="login-matched-dept">Ready for verification</div>
+              </div>
+            </div>
+
+            <div class="terminal-event-box" id="login-logs" style="width: 100%; text-align: left; height: 110px;">
+              <!-- Timed logs -->
+            </div>
+            
+            <div style="width: 100%; text-align: left; font-size: 0.75rem; color: var(--text-dim); margin-top: 0.5rem;">
+              <label for="login-profile-select" style="font-weight: 600; display: block; margin-bottom: 0.25rem;">Select simulated keycard:</label>
+              <select id="login-profile-select" class="form-input" style="padding: 0.4rem 0.75rem; font-size: 0.8rem; border-radius: 10px;">
+                <!-- Select profiles -->
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 5. MY WORKSPACE (EMPLOYEE DASHBOARD) ================= -->
+      <div id="view-emp-dashboard" class="view-section">
+        <div style="margin-bottom: 2.5rem;">
+          <h2 style="font-size: 2rem; color: var(--text-main); margin-bottom: 0.5rem;">My Workspace</h2>
+          <p style="color: var(--text-secondary);">Your active digital workspace identity profile and lobby credentials.</p>
+        </div>
+
+        <div class="workspace-grid">
+          <!-- Left: 3D Holographic Keycard -->
+          <div>
+            <div class="keycard-container-perspective">
+              <div class="digital-keycard-3d" id="employee-badge-card">
+                <div class="keycard-header">
+                  <div class="keycard-logo">DEMOTECH WORKSPACE</div>
+                  <div class="keycard-chip"></div>
+                </div>
+                
+                <div class="keycard-body">
+                  <div class="keycard-photo-wrapper">
+                    <!-- img loaded from /data/profile_images/{id}.jpg -->
+                    <div id="emp-card-avatar" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-family: var(--font-brand); font-size: 2.25rem; color: #fff;">AP</div>
+                  </div>
+                  
+                  <div style="text-align: center;">
+                    <div class="keycard-name" id="emp-card-name">Ananya Prakash</div>
+                    <span style="font-size: 0.72rem; color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-top: 0.25rem;" id="emp-card-role">Architect</span>
+                  </div>
+                  
+                  <div class="keycard-meta-list">
+                    <div class="keycard-meta-item">
+                      <span class="keycard-meta-lbl">Keycard ID</span>
+                      <span class="keycard-meta-val" id="emp-card-id">DT-0925</span>
+                    </div>
+                    <div class="keycard-meta-item">
+                      <span class="keycard-meta-lbl">Course/Dept</span>
+                      <span class="keycard-meta-val" id="emp-card-dept">Engineering</span>
+                    </div>
+                    <div class="keycard-meta-item">
+                      <span class="keycard-meta-lbl">Institution</span>
+                      <span class="keycard-meta-val" id="emp-card-email">DTU</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="keycard-footer">
+                  <div class="keycard-clearance" id="badge-clearance-status">
+                    <i data-lucide="shield-check" style="width: 12px; height: 12px; vertical-align: middle; margin-right: 3px;"></i> Active Clearance
+                  </div>
+                  <svg class="keycard-qr" viewBox="0 0 100 100" fill="currentColor">
+                    <rect x="0" y="0" width="20" height="20" />
+                    <rect x="30" y="0" width="20" height="20" />
+                    <rect x="80" y="0" width="20" height="20" />
+                    <rect x="0" y="30" width="20" height="20" />
+                    <rect x="50" y="30" width="20" height="30" />
+                    <rect x="80" y="40" width="20" height="20" />
+                    <rect x="0" y="80" width="20" height="20" />
+                    <rect x="30" y="70" width="40" height="20" />
+                    <rect x="80" y="80" width="20" height="20" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Clock Widget & Today's logs -->
+          <div class="workspace-right-column">
+            <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 2rem;">
+              
+              <!-- Session clock widget -->
+              <div class="card-viewport" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <h3 style="font-family: var(--font-brand); font-size: 1.1rem; color: var(--text-main); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><i data-lucide="clock" style="color: var(--secondary);"></i> Workspace clock</h3>
+                  <div style="font-family: var(--font-brand); font-size: 2.25rem; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; line-height: 1.2;" id="dashboard-clock">00:00:00</div>
+                  <div style="font-size: 0.82rem; color: var(--text-dim);" id="dashboard-date">Sunday, June 7, 2026</div>
+                </div>
+                
+                <div style="margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+                  <span style="font-size: 0.85rem; color: var(--text-secondary); font-weight: 500;">Status today:</span>
+                  <span style="font-family: var(--font-brand); font-size: 0.82rem; font-weight: 700; text-transform: uppercase;" id="today-presence-status">ABSENT</span>
+                </div>
+              </div>
+
+              <!-- Quick access CTA -->
+              <div class="card-viewport" style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 1rem; border-color: rgba(99,102,241,0.15); text-align: center;">
+                <i data-lucide="coffee" style="width: 32px; height: 32px; color: var(--primary);"></i>
+                <div style="font-size: 0.82rem; color: var(--text-secondary);">Ready to sign off for the day?</div>
+                
+                <button class="btn-outline" id="btn-dashboard-checkout" onclick="simulateDashboardPresence('checkout')" style="color: var(--danger); border-color: rgba(239, 68, 68, 0.2); background-color: rgba(239, 68, 68, 0.04); width: 100%; justify-content: center;" disabled>
+                  Leave Office
+                </button>
+              </div>
+
+            </div>
+
+            <!-- Attendance logs list -->
+            <div class="card-viewport">
+              <h3 style="font-family: var(--font-brand); font-size: 1.1rem; color: var(--text-main); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;"><i data-lucide="history" style="color: var(--success);"></i> Activity history</h3>
+              
+              <div id="emp-table-container" class="friendly-table-wrapper" style="display: none; max-height: 180px; overflow-y: auto;">
+                <table class="friendly-table" style="width: 100%; text-align: left; border-collapse: collapse; font-size: 0.88rem;">
+                  <thead>
+                    <tr style="border-bottom: 1px solid var(--border-color); color: var(--text-dim); font-size: 0.78rem;">
+                      <th style="padding-bottom: 0.5rem;">Date</th>
+                      <th style="padding-bottom: 0.5rem;">Check-In</th>
+                      <th style="padding-bottom: 0.5rem;">Check-Out</th>
+                      <th style="padding-bottom: 0.5rem;">Elapsed</th>
+                    </tr>
+                  </thead>
+                  <tbody id="emp-attendance-history-body" style="color: var(--text-secondary);">
+                    <!-- Rows dynamically seeded -->
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="empty-state-wrapper" id="emp-history-empty" style="text-align: center; padding: 1.5rem 0;">
+                <div style="font-size: 0.85rem; color: var(--text-dim);">No access records logged for this session yet.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 6. VIRTUAL OFFICE LOBBY (ADMIN PANEL) ================= -->
+      <div id="view-admin-dashboard" class="view-section">
+        <div style="margin-bottom: 2.5rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h2 style="font-size: 2rem; color: var(--text-main); margin-bottom: 0.5rem; font-style: italic;">Virtual Office Lobby</h2>
+            <p style="color: var(--text-secondary);">Social timeline updates and active digital employee keycard directories.</p>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin-bottom: 2.5rem;">
+          <div class="card-viewport" style="padding: 1.25rem 1.5rem;">
+            <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-dim); font-weight: 700; letter-spacing: 0.5px;">Total Active Keys</span>
+            <div id="admin-stats-total" style="font-family: var(--font-brand); font-size: 1.85rem; font-weight: 800; color: var(--text-main); margin: 0.25rem 0;">0</div>
+            <span style="font-size: 0.72rem; color: var(--text-dim);">Digital credentials issued</span>
+          </div>
+          <div class="card-viewport" style="padding: 1.25rem 1.5rem; border-left: 3px solid var(--success);">
+            <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-dim); font-weight: 700; letter-spacing: 0.5px;">Active in Office</span>
+            <div id="admin-stats-present" style="font-family: var(--font-brand); font-size: 1.85rem; font-weight: 800; color: var(--success); margin: 0.25rem 0;">0</div>
+            <span id="admin-stats-present-sub" style="font-size: 0.72rem; color: var(--text-dim);">0% present today</span>
+          </div>
+          <div class="card-viewport" style="padding: 1.25rem 1.5rem; border-left: 3px solid var(--danger);">
+            <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-dim); font-weight: 700; letter-spacing: 0.5px;">Working Remotely</span>
+            <div id="admin-stats-absent" style="font-family: var(--font-brand); font-size: 1.85rem; font-weight: 800; color: var(--text-secondary); margin: 0.25rem 0;">0</div>
+            <span id="admin-stats-absent-sub" style="font-size: 0.72rem; color: var(--text-dim);">0% absent today</span>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 2.5rem;">
+          <!-- Live timeline updates -->
+          <div class="card-viewport">
+            <h3 style="font-family: var(--font-brand); font-size: 1.15rem; color: var(--primary); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;"><i data-lucide="activity"></i> Active Lobby Activity</h3>
+            
+            <div class="lobby-timeline" id="admin-global-activity-feed">
+              <!-- Dynamically populated rows -->
+            </div>
+            
+            <div class="empty-state-wrapper" id="admin-logs-empty" style="text-align: center; padding: 2rem 0; display: none;">
+              <div style="font-size: 0.85rem; color: var(--text-dim);">Lobby lounge is currently empty. Verify access at the Biometric Gate.</div>
+            </div>
+          </div>
+
+          <!-- Directory -->
+          <div class="card-viewport">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+              <h3 style="font-family: var(--font-brand); font-size: 1.15rem; color: var(--text-main); margin-bottom: 0;"><i data-lucide="contact" style="color: var(--secondary);"></i> Employee Registry</h3>
+              <input type="text" id="admin-table-search" class="form-input" placeholder="Search ID, name or course..." style="width: 250px; padding: 0.5rem 1rem; font-size: 0.82rem; border-radius: 12px; display: none;">
+            </div>
+
+            <div id="admin-table-container" class="friendly-table-wrapper" style="display: none; max-height: 250px; overflow-y: auto;">
+              <table class="friendly-table" style="width: 100%; text-align: left; border-collapse: collapse; font-size: 0.88rem;">
+                <thead>
+                  <tr style="border-bottom: 1px solid var(--border-color); color: var(--text-dim); font-size: 0.78rem;">
+                    <th style="padding-bottom: 0.5rem;">ID</th>
+                    <th style="padding-bottom: 0.5rem;">Name</th>
+                    <th style="padding-bottom: 0.5rem;">Course / Dept</th>
+                    <th style="padding-bottom: 0.5rem;">Institution</th>
+                    <th style="padding-bottom: 0.5rem; text-align: center;">Lobby Status</th>
+                    <th style="padding-bottom: 0.5rem; text-align: center;">Entry Time</th>
+                    <th style="padding-bottom: 0.5rem; text-align: right;">Credentials</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-employee-table-body" style="color: var(--text-secondary);">
+                  <!-- Seeded -->
+                </tbody>
+              </table>
+            </div>
+
+            <div class="empty-state-wrapper" id="admin-employees-empty" style="text-align: center; padding: 2.5rem 0;">
+              <div style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 1rem;">No employee registry files logged yet.</div>
+              <button class="btn-primary" onclick="router.navigate('register')">
+                Register Profile
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ================= 7. LEAVING THE OFFICE (TRANSITION OVERLAY) ================= -->
+  <div class="leaving-dimmer-viewport" id="view-leaving">
+    <div class="leaving-farewell-card">
+      <div class="sidebar-avatar" style="width: 48px; height: 48px; font-weight: 800; border-radius: 16px;">DT</div>
+      
+      <h2 class="leaving-title">Leaving the Workspace</h2>
+      
+      <p class="leaving-desc" id="leaving-farewell-message">
+        Heading home. Thanks for spending time in DemoTech today.
+      </p>
+      
+      <!-- Radial countdown -->
+      <div class="leaving-countdown-radial">
+        <svg width="80" height="80" viewBox="0 0 80 80" style="transform: rotate(-90deg);">
+          <circle cx="40" cy="40" r="34" stroke="rgba(255,255,255,0.05)" stroke-width="4" fill="transparent" />
+          <circle cx="40" cy="40" r="34" stroke="url(#logo-bracket-grad)" stroke-width="4" fill="transparent" stroke-dasharray="213" stroke-dashoffset="0" id="leaving-countdown-circle" style="transition: stroke-dashoffset 1s linear;" />
+        </svg>
+        <div style="position: absolute;" class="leaving-countdown-text" id="leaving-countdown-sec">4</div>
+      </div>
+      
+      <div style="font-size: 0.82rem; color: #71717a;">Workspace access logs securely synced to SQLite.</div>
+      
+      <button class="btn-secondary" onclick="resetLeavingStateAndVerify()" style="margin-top: 1rem; width: 100%; max-width: 280px; justify-content: center;">
+        <i data-lucide="scan-face" style="width: 16px; height: 16px;"></i> Re-enter Workspace
+      </button>
+    </div>
+  </div>
+
+  <!-- Global SVG definitions for gradients -->
+  <svg style="width:0; height:0; position:absolute;" aria-hidden="true" focusable="false">
+    <linearGradient id="logo-bracket-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#6366f1" />
+    </linearGradient>
+    <linearGradient id="progress-ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+  </svg>
+
+  <!-- Confetti canvas overlay -->
+  <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 2500;">
+    <canvas id="confetti-canvas"></canvas>
+  </div>
+
+  <!-- Dialogue overlays (Modals) -->
+  <div class="modal-overlay-friendly" id="app-modal" style="display: none;">
+    <div class="modal-content-box">
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem;">
+        <div class="modal-status-avatar success" id="modal-icon-container">
+          <i data-lucide="check" id="modal-icon" style="width: 24px; height: 24px;"></i>
+        </div>
+        <h3 style="font-family: var(--font-brand); font-size: 1.25rem; font-weight: 700; color: var(--text-main);" id="modal-title">Verification Successful</h3>
+        <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;" id="modal-desc">Biometric identity verified.</p>
+        <button class="btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;" onclick="closeModal()">Close Console Window</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating toast feedback alerts -->
+  <div class="app-toast-alert" id="app-toast" style="position: fixed; bottom: 2rem; right: 2rem; display: flex; align-items: center; gap: 0.75rem; background-color: var(--bg-card); backdrop-filter: blur(16px); border: 1px solid var(--border-color); padding: 0.75rem 1.25rem; border-radius: 16px; box-shadow: var(--shadow-premium); z-index: 2800; transform: translateY(100px); opacity: 0; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);">
+    <i data-lucide="info" style="width: 16px; height: 16px; color: var(--primary);" class="friendly-toast-icon"></i>
+    <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-main);" id="toast-message">Database initialized.</span>
+  </div>
+
+  <!-- CDNs for icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Single Page App controller -->
+  <script src="app.js"></script>
+</body>
+</html>
