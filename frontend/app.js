@@ -15,7 +15,7 @@ let currentLoggedUser = null;
 let onboardingData = null; // Holds temporary Name, College, Course, Year during registration
 
 // Dynamic API Base URL Selection
-const RENDER_BACKEND_URL = 'https://demotech-backend.onrender.com/api/v1';
+const RENDER_BACKEND_URL = 'https://demotech.onrender.com/api/v1';
 let API_BASE_URL = '/api/v1';
 
 if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
