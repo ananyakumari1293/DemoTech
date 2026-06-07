@@ -103,7 +103,8 @@ The project demonstrates how AI-powered authentication can be integrated into a 
 <br>
 
 <p align="center">
-  <!-- Landing Page Screenshot -->
+  <img width="927" height="479" alt="{B568EE9B-D49E-4A9E-BB13-463B5866B288}" src="https://github.com/user-attachments/assets/04f986b1-f47f-41f6-90c6-e8c60a81ba94" />
+
 </p>
 
 <br>
@@ -118,6 +119,8 @@ The project demonstrates how AI-powered authentication can be integrated into a 
 
 <p align="center">
   <!-- Registration Screenshot -->
+  <img width="937" height="450" alt="{38EB9DDE-4D68-44B9-A512-A271499BDF81}" src="https://github.com/user-attachments/assets/33931135-9759-46bb-b86e-7587a3844998" />
+
 </p>
 
 <br>
@@ -132,6 +135,8 @@ The project demonstrates how AI-powered authentication can be integrated into a 
 
 <p align="center">
   <!-- Login Screenshot -->
+  <img width="780" height="381" alt="{5E420B1F-148A-47CF-A524-EF0A62C81B2B}" src="https://github.com/user-attachments/assets/34ba5298-ae1d-424b-9b0e-d0e01353a5a9" />
+
 </p>
 
 <br>
@@ -146,6 +151,8 @@ The project demonstrates how AI-powered authentication can be integrated into a 
 
 <p align="center">
   <!-- Lobby Screenshot -->
+  <img width="781" height="491" alt="{C88801B2-B132-44F3-9487-5E90FE953F9C}" src="https://github.com/user-attachments/assets/cc55bd6b-8bd4-4e6c-b8d4-89d7e8fe45b9" />
+
 </p>
 
 <br>
