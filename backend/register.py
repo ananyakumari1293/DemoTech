@@ -4,7 +4,7 @@ import numpy as np
 import os
 import pickle
 import logging
-from . import config
+import config
 
 logger = logging.getLogger("demotech.register")
 

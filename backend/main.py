@@ -13,10 +13,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-from . import config
-from . import database
-from . import register
-from . import attendance
+import config
+import database
+import register
+import attendance
 
 # Setup Logging basic config
 logging.basicConfig(
