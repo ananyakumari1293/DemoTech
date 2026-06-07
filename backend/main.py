@@ -162,7 +162,7 @@ def health_check():
         conn.close()
         db_status = "connected"
     except Exception as e:
-        db_status = f"disconnected: {e}"
+        db_status = "disconnected"
         logger.error(f"Health check database failure: {e}")
         
     employees_count = len(set(attendance.cached_ids))

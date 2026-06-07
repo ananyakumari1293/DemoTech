@@ -14,6 +14,33 @@ let logs = [];
 let currentLoggedUser = null; 
 let onboardingData = null; // Holds temporary Name, College, Course, Year during registration
 
+// Dynamic API Base URL Selection
+const RENDER_BACKEND_URL = 'https://demotech-backend.onrender.com/api/v1';
+let API_BASE_URL = '/api/v1';
+
+if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+  if (window.location.port && window.location.port !== '8000') {
+    API_BASE_URL = 'http://127.0.0.1:8000/api/v1';
+  } else {
+    API_BASE_URL = '/api/v1';
+  }
+} else if (window.location.protocol === 'file:') {
+  API_BASE_URL = 'http://127.0.0.1:8000/api/v1';
+} else {
+  API_BASE_URL = RENDER_BACKEND_URL;
+}
+
+// Extract base URL for assets like profile images
+let DATA_BASE_URL = '/data';
+if (API_BASE_URL.startsWith('http')) {
+  try {
+    const url = new URL(API_BASE_URL);
+    DATA_BASE_URL = `${url.protocol}//${url.host}/data`;
+  } catch (e) {
+    console.error("Invalid API_BASE_URL format", e);
+  }
+}
+
 // Video streams
 let activeStream = null;
 let activeCameraPage = null; // 'registration' or 'facelogin'
@@ -31,17 +58,19 @@ let useBackendAPI = false;
 
 async function checkBackendAvailability() {
   try {
-    const res = await fetch('/api/v1/health');
+    const res = await fetch(`${API_BASE_URL}/health`);
     if (res.ok) {
       const data = await res.json();
       if (data.status === 'online') {
         useBackendAPI = true;
         console.log("Connected to DemoTech FastAPI backend.");
+        showToast("Connected to live biometric backend.", "success");
         return;
       }
     }
   } catch (err) {
     console.warn("FastAPI backend not reachable. Falling back to client-side localStorage mode.");
+    showToast("Backend offline. Running in client-side mockup mode.", "info");
   }
   useBackendAPI = false;
 }
@@ -53,9 +82,11 @@ async function checkBackendAvailability() {
 async function loadDataFromBackend() {
   if (useBackendAPI) {
     try {
-      const res = await fetch('/api/v1/employees');
+      const res = await fetch(`${API_BASE_URL}/employees`);
       if (res.ok) {
         employees = await res.json();
+      } else {
+        showToast(`Failed to sync directory (Status ${res.status}).`, 'error');
       }
       
       if (currentLoggedUser) {
@@ -64,13 +95,14 @@ async function loadDataFromBackend() {
           currentLoggedUser = updatedUser;
         }
         
-        const logsRes = await fetch(`/api/v1/attendance?employee_id=${currentLoggedUser.id}`);
+        const logsRes = await fetch(`${API_BASE_URL}/attendance?employee_id=${currentLoggedUser.id}`);
         if (logsRes.ok) {
           logs = await logsRes.json();
         }
       }
     } catch (err) {
       console.error("Failed to sync data with FastAPI backend:", err);
+      showToast("Data sync error: FastAPI backend is unreachable.", "error");
     }
   } else {
     // Client-side local storage fallback mode
@@ -187,7 +219,7 @@ function updateUserCardVisibility() {
     avatar.style.justifyContent = 'center';
     
     avatar.innerHTML = `
-      <img src="/data/profile_images/${currentLoggedUser.id}.jpg?t=${new Date().getTime()}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; document.getElementById('sidebar-user-avatar-initials').style.display='flex';" />
+      <img src="${DATA_BASE_URL}/profile_images/${currentLoggedUser.id}.jpg?t=${new Date().getTime()}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; document.getElementById('sidebar-user-avatar-initials').style.display='flex';" />
       <span id="sidebar-user-avatar-initials" style="display: none; width: 100%; height: 100%; align-items: center; justify-content: center;">${initials}</span>
     `;
     
@@ -252,7 +284,7 @@ function checkEmptyStates() {
 async function mockPopulateDatabase() {
   if (useBackendAPI) {
     try {
-      const res = await fetch('/api/v1/admin/populate', { method: 'POST' });
+      const res = await fetch(`${API_BASE_URL}/admin/populate`, { method: 'POST' });
       if (res.ok) {
         const data = await res.json();
         showToast(data.message, 'success');
@@ -260,11 +292,11 @@ async function mockPopulateDatabase() {
         await loadDataFromBackend();
         router.onViewChanged(router.currentPage);
       } else {
-        showToast('Failed to seed mock database.', 'error');
+        showToast(`Failed to seed mock database (Status ${res.status}).`, 'error');
       }
     } catch (err) {
       console.error(err);
-      showToast('Network error populating database.', 'error');
+      showToast('Network error populating database. Backend may be offline.', 'error');
     }
   } else {
     // Offline mode: Clear localStorage database
@@ -282,7 +314,7 @@ async function resetDefaultMockData() {
   if (confirm('Revert all registered records back to the clean empty state?')) {
     if (useBackendAPI) {
       try {
-        const res = await fetch('/api/v1/admin/reset', { method: 'POST' });
+        const res = await fetch(`${API_BASE_URL}/admin/reset`, { method: 'POST' });
         if (res.ok) {
           const data = await res.json();
           showToast(data.message, 'info');
@@ -291,11 +323,11 @@ async function resetDefaultMockData() {
           currentLoggedUser = null;
           router.onViewChanged(router.currentPage);
         } else {
-          showToast('Failed to clear database.', 'error');
+          showToast(`Failed to clear database (Status ${res.status}).`, 'error');
         }
       } catch (err) {
         console.error(err);
-        showToast('Network error resetting database.', 'error');
+        showToast('Network error resetting database. Backend may be offline.', 'error');
       }
     } else {
       employees = [];
@@ -697,7 +729,9 @@ async function captureRegistrationSample() {
   addLog('registration-logs', `Extracting keypoints for sample ${registrationSamplesCount + 1}...`, 'info');
   
   try {
-    const res = await fetch('/api/v1/register/sample', {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000);
+    const res = await fetch(`${API_BASE_URL}/register/sample`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -706,11 +740,18 @@ async function captureRegistrationSample() {
         image: base64Frame,
         sample_index: registrationSamplesCount + 1,
         employee_id: onboardingData.employeeId
-      })
+      }),
+      signal: controller.signal
     });
+    clearTimeout(timeoutId);
     
     if (!res.ok) {
-      const errData = await res.json();
+      let errData = {};
+      try {
+        errData = await res.json();
+      } catch (e) {
+        errData = { detail: { message: `HTTP Error ${res.status}` } };
+      }
       const detail = errData.detail || {};
       const status = detail.status || 'error';
       const message = detail.message || 'Validation error.';
@@ -782,8 +823,13 @@ async function captureRegistrationSample() {
     
   } catch (err) {
     console.error(err);
-    showToast('Failed to connect to registration API.', 'error');
-    addLog('registration-logs', 'Network error during validation.', 'error');
+    if (err.name === 'AbortError') {
+      showToast('Capture request timed out. Render backend may be sleeping.', 'error');
+      addLog('registration-logs', 'Network timeout. Retrying request is recommended.', 'error');
+    } else {
+      showToast('Failed to connect to registration API.', 'error');
+      addLog('registration-logs', 'Network error during validation.', 'error');
+    }
     captureBtn.disabled = false;
   }
 }
@@ -801,7 +847,9 @@ async function triggerEmployeeRegistration() {
   document.getElementById('btn-register-employee').disabled = true;
   
   try {
-    const res = await fetch('/api/v1/register', {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000);
+    const res = await fetch(`${API_BASE_URL}/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -813,11 +861,18 @@ async function triggerEmployeeRegistration() {
         department: course,
         role: college,
         embeddings: registrationEmbeddings
-      })
+      }),
+      signal: controller.signal
     });
+    clearTimeout(timeoutId);
     
     if (!res.ok) {
-      const err = await res.json();
+      let err;
+      try {
+        err = await res.json();
+      } catch (e) {
+        err = { detail: `HTTP Error ${res.status}` };
+      }
       showToast(err.detail || 'Registration failed.', 'error');
       addLog('registration-logs', `SAVE FAILED: ${err.detail || 'API error'}`, 'error');
       document.getElementById('btn-register-employee').disabled = false;
@@ -841,8 +896,13 @@ async function triggerEmployeeRegistration() {
     
   } catch (err) {
     console.error(err);
-    showToast('Failed to save employee registration.', 'error');
-    addLog('registration-logs', 'Network error while saving registration.', 'error');
+    if (err.name === 'AbortError') {
+      showToast('Registration timed out. Render backend may be warming up.', 'error');
+      addLog('registration-logs', 'Network timeout while saving registration.', 'error');
+    } else {
+      showToast('Failed to save employee registration.', 'error');
+      addLog('registration-logs', 'Network error while saving registration.', 'error');
+    }
     document.getElementById('btn-register-employee').disabled = false;
   }
 }
@@ -904,17 +964,33 @@ async function startFaceLoginVerification() {
     return;
   }
   
-  // Start parallel API request
-  let apiPromise = fetch('/api/v1/verify', {
+  // Start parallel API request with AbortController timeout
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 15000);
+  
+  let apiPromise = fetch(`${API_BASE_URL}/verify`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ image: base64Frame })
+    body: JSON.stringify({ image: base64Frame }),
+    signal: controller.signal
   }).then(async res => {
+    clearTimeout(timeoutId);
     if (!res.ok) {
-      const err = await res.json();
+      let err;
+      try {
+        err = await res.json();
+      } catch (e) {
+        err = { detail: { message: `HTTP Error ${res.status}` } };
+      }
       throw err;
     }
     return res.json();
+  }).catch(err => {
+    clearTimeout(timeoutId);
+    if (err.name === 'AbortError') {
+      throw { detail: { message: 'Biometric verification timed out. Render backend may be waking up. Please retry in a moment.' } };
+    }
+    throw err;
   });
   
   try {
@@ -972,7 +1048,7 @@ async function startFaceLoginVerification() {
         matchedAvatar.style.alignItems = 'center';
         matchedAvatar.style.justifyContent = 'center';
         matchedAvatar.innerHTML = `
-          <img src="/data/profile_images/${result.employee_id}.jpg?t=${new Date().getTime()}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; document.getElementById('login-matched-avatar-initials').style.display='flex';" />
+          <img src="${DATA_BASE_URL}/profile_images/${result.employee_id}.jpg?t=${new Date().getTime()}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; document.getElementById('login-matched-avatar-initials').style.display='flex';" />
           <span id="login-matched-avatar-initials" style="display: none; width: 100%; height: 100%; align-items: center; justify-content: center;">${initials}</span>
         `;
         const matchImg = matchedAvatar.querySelector('img');
@@ -1112,7 +1188,7 @@ function renderEmployeeDashboard() {
   empAvatar.style.justifyContent = 'center';
   
   empAvatar.innerHTML = `
-    <img src="/data/profile_images/${currentLoggedUser.id}.jpg?t=${new Date().getTime()}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; document.getElementById('emp-card-avatar-initials').style.display='flex';" />
+    <img src="${DATA_BASE_URL}/profile_images/${currentLoggedUser.id}.jpg?t=${new Date().getTime()}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; document.getElementById('emp-card-avatar-initials').style.display='flex';" />
     <span id="emp-card-avatar-initials" style="display: none; width: 100%; height: 100%; align-items: center; justify-content: center;">${initials}</span>
   `;
   
@@ -1207,10 +1283,14 @@ async function triggerLeavingSequence(event) {
   }
   
   // Call checkout endpoint in background
-  let checkoutPromise = fetch('/api/v1/checkout', {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 10000);
+  
+  let checkoutPromise = fetch(`${API_BASE_URL}/checkout`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ employee_id: employeeId })
+    body: JSON.stringify({ employee_id: employeeId }),
+    signal: controller.signal
   });
   
   if (leavingTimer) clearInterval(leavingTimer);
@@ -1235,11 +1315,16 @@ async function triggerLeavingSequence(event) {
   async function completeCheckoutAndExit() {
     try {
       const res = await checkoutPromise;
+      clearTimeout(timeoutId);
       if (res.ok) {
         showToast("Access logs synced. Have a great evening!", "info");
+      } else {
+        showToast("Leaving virtual workplace. Local status updated.", "info");
       }
     } catch (err) {
+      clearTimeout(timeoutId);
       console.error("Error executing checkout API:", err);
+      showToast("Leaving virtual workplace. Local status updated.", "info");
     }
     
     currentLoggedUser = null;
@@ -1341,15 +1426,18 @@ async function renderAdminDashboard() {
   let absent = 0;
   
   try {
-    const statsRes = await fetch('/api/v1/stats');
+    const statsRes = await fetch(`${API_BASE_URL}/stats`);
     if (statsRes.ok) {
       const stats = await statsRes.json();
       total = stats.total;
       present = stats.present;
       absent = stats.absent;
+    } else {
+      showToast("Failed to load attendance statistics.", "error");
     }
   } catch (err) {
     console.error("Failed to load admin stats:", err);
+    showToast("Network error loading dashboard statistics.", "error");
   }
   
   document.getElementById('admin-stats-total').textContent = total;
@@ -1406,12 +1494,15 @@ async function renderAdminDashboard() {
   
   let realLogs = [];
   try {
-    const logsRes = await fetch('/api/v1/attendance');
+    const logsRes = await fetch(`${API_BASE_URL}/attendance`);
     if (logsRes.ok) {
       realLogs = await logsRes.json();
+    } else {
+      showToast("Failed to fetch global access logs.", "error");
     }
   } catch (err) {
     console.error("Failed to load global activity logs:", err);
+    showToast("Network error loading activity feeds.", "error");
   }
   
   generateSimulatedLobbyTimeline(realLogs);
@@ -1422,9 +1513,14 @@ document.getElementById('admin-table-search').addEventListener('input', renderAd
 
 async function toggleAdminEmpPresence(id) {
   try {
-    const res = await fetch(`/api/v1/employees/${id}/toggle`, { method: 'POST' });
+    const res = await fetch(`${API_BASE_URL}/employees/${id}/toggle`, { method: 'POST' });
     if (!res.ok) {
-      const err = await res.json();
+      let err;
+      try {
+        err = await res.json();
+      } catch (e) {
+        err = { detail: `HTTP Error ${res.status}` };
+      }
       showToast(err.detail || 'Toggle presence failed.', 'error');
       return;
     }
@@ -1441,9 +1537,14 @@ async function toggleAdminEmpPresence(id) {
 async function deleteEmployeeRecord(id) {
   if (confirm(`Are you sure you want to remove employee ID ${id} from registry?`)) {
     try {
-      const res = await fetch(`/api/v1/employees/${id}`, { method: 'DELETE' });
+      const res = await fetch(`${API_BASE_URL}/employees/${id}`, { method: 'DELETE' });
       if (!res.ok) {
-        const err = await res.json();
+        let err;
+        try {
+          err = await res.json();
+        } catch (e) {
+          err = { detail: `HTTP Error ${res.status}` };
+        }
         showToast(err.detail || 'Delete profile failed.', 'error');
         return;
       }
